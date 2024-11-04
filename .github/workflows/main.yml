@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: FTP Deploy Forked
-        uses: snorux/FTP-Deploy-Action@34f2dffd579b47565ccbcb90f9aa28b0a3556cf5
+        uses: SamKirkland/FTP-Deploy-Action@4.1.05
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
