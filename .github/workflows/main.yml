@@ -20,6 +20,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21  # Add this if required by your FTP server
           protocol: ftps  # Ensure the protocol is correct (ftp, ftps, or ftps-legacy)
-          local-dir: ./build
+          local-dir: ./
           target-dir: /public_html/rexinsit/  # If needed
           log-level: verbose  # For more detailed logging
