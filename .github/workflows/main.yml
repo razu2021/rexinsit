@@ -15,9 +15,9 @@ jobs:
       - name: FTP Deploy Forked
         uses: snorux/FTP-Deploy-Action@34f2dffd579b47565ccbcb90f9aa28b0a3556cf5
         with:
-          server: ftp.handsbd.org
-          username: u160199530.hands2012
-          password: HANDSBDAdmin2024  # Secure your password using GitHub Secrets
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           port: 21  # Add this if required by your FTP server
           protocol: ftps  # Ensure the protocol is correct (ftp, ftps, or ftps-legacy)
           local-dir: ./  # Specify the directory to upload
