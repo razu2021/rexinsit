@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up PHP
-        uses: ./
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'  # Specify the PHP version compatible with your Laravel project
           extensions: mbstring, bcmath, xml, curl, json, zip, fileinfo
@@ -28,7 +28,7 @@ jobs:
           
 
       - name: Deploy to FTP
-        uses: ncipollo/ftp-deploy@v1.1.0  # Use the latest stable version
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0  # Use the latest stable version
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
