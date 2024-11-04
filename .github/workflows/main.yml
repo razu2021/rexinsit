@@ -1,0 +1,25 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - main  # Correct branch specification
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy Forked
+        uses: snorux/FTP-Deploy-Action@34f2dffd579b47565ccbcb90f9aa28b0a3556cf5
+        with:
+          server: ftp.handsbd.org
+          username: u160199530.hands2012
+          password: ${{ secrets.hands@2012$razu.devR }}  # Secure your password using GitHub Secrets
+          port: 21  # Add this if required by your FTP server
+          protocol: ftps  # Ensure the protocol is correct (ftp, ftps, or ftps-legacy)
+          local-dir: ./  # Specify the directory to upload
+          server-dir: /public_html/rexinsit/  # Ensure this path ends with a trailing slash
+          log-level: info  # Adjust to debug for more detailed logs
