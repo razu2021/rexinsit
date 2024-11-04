@@ -1,9 +1,9 @@
-name: Deploy to FTP
+name: Deploy Laravel to cPanel via FTP
 
 on:
   push:
     branches:
-      - main  # Correct branch specification
+      - main  # Change this to your primary branch
 
 jobs:
   deploy:
@@ -12,14 +12,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: FTP Deploy Forked
-        uses: ephorize/ftp-deploy-action@v1.0.0
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Specify the PHP version compatible with your Laravel project
+          extensions: mbstring, bcmath, xml, curl, json, zip, fileinfo
+
+      - name: Install dependencies
+        run: |
+          composer install --no-dev --optimize-autoloader
+
+      - name: Build assets
+        run: |
+          npm install
+          
+
+      - name: Deploy to FTP
+        uses: ncipollo/ftp-deploy@v1.1.0  # Use the latest stable version
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21  # Add this if required by your FTP server
-          protocol: ftp  # Ensure the protocol is correct (ftp, ftps, or ftps-legacy)
-          local-dir: ./
-          server-dir: /public_html/rexinsit/  # If needed
-          log-level: verbose  # For more detailed logging
+          local-dir: ./public  # Path to the public directory of your Laravel project
+          server-dir: /public_html/rexinsit/  # Change this to your target directory on the server
+          port: 21  # Default FTP port
+          protocol: ftp  # Change to 'ftps' if your server requires secure FTP
+          log-level: verbose  # For detailed logging
+
+      
