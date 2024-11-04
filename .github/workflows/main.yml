@@ -17,7 +17,7 @@ jobs:
         with:
           server: ftp.handsbd.org
           username: u160199530.hands2012
-          password: ${{ secrets.HANDSBD@Admin2024 }}  # Secure your password using GitHub Secrets
+          password: ${{ secrets.HANDSBDAdmin2024 }}  # Secure your password using GitHub Secrets
           port: 21  # Add this if required by your FTP server
           protocol: ftps  # Ensure the protocol is correct (ftp, ftps, or ftps-legacy)
           local-dir: ./  # Specify the directory to upload
