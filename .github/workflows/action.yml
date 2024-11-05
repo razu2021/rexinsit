@@ -14,15 +14,19 @@ jobs:
     - name: Build assets
       run: npm install && npm run build
 
+    - name: Enable Debugging
+      run: |
+        echo "FTP_DEPLOY_LOG_LEVEL=DEBUG" >> $GITHUB_ENV
+
     - name: Install PHP and Composer
       uses: shivammathur/setup-php@v2
       with:
-          php-version: '8.2' # Adjust to match the PHP version used by your Laravel project
+          php-version: '8.2'  # Adjust to match the PHP version used by your Laravel project
           tools: 'composer'
 
     - name: Install PHP dependencies
       run: composer install --no-dev --optimize-autoloader
-        
+
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
@@ -31,6 +35,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/rexinsit/  # Change this to your target directory on the server
           port: 21  # Default FTP port
-          
-
-      
