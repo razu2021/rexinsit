@@ -33,5 +33,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/rexinsit/  # Change this to your target directory on the server
+          server-dir: /rexinsit/  # Change this to your target directory on the server
           port: 21  # Default FTP port
