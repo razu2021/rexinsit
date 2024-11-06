@@ -1,0 +1,40 @@
+*{
+    margin:0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #fff;
+    scroll-behavior: smooth;
+}
+.bannerindex{
+    height: 100vh;
+    width: 100vw;
+    background-color: antiquewhite;
+    justify-content: center;
+    display: grid;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-items: center;
+}
+
+.container img{
+    height: 200px;
+    width: 200px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    margin: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.container h1{
+    font-size: 5rem;
+    color: black;
+    margin: 0;
+    padding-bottom: 10px;
+    
+}
+.container h1 span{
+    color: rgb(78, 81, 243);
+}
