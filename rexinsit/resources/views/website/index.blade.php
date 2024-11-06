@@ -12,5 +12,4 @@
     <h1>this is rexins it </h1>
 </body>
 </html>
-
 @endsection
