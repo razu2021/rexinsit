@@ -1,39 +1,49 @@
 name: Publish Website to CPanel
+
 on:
   push:
     branches:
       - main
+
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.1.0
+    - uses: actions/checkout@v3
       with:
-        fetch-depth: 2 
-    - name: Build assets
-      run: npm install && npm run build
+        fetch-depth: 2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'  # Use your required Node.js version
+
+    - name: Install and Build Assets
+      run: |
+        npm install
+        chmod +x node_modules/.bin/vite  # Ensure vite is executable
+        npm run build
       working-directory: ./rexinsit
 
     - name: Enable Debugging
-      run: |
-        echo "FTP_DEPLOY_LOG_LEVEL=DEBUG" >> $GITHUB_ENV
+      run: echo "FTP_DEPLOY_LOG_LEVEL=DEBUG" >> $GITHUB_ENV
 
     - name: Install PHP and Composer
       uses: shivammathur/setup-php@v2
       with:
-          php-version: '8.2'  # Adjust to match the PHP version used by your Laravel project
-          tools: 'composer'
+        php-version: '8.2'  # Match PHP version in your Laravel project
+        tools: 'composer'
 
-    - name: Install PHP dependencies
+    - name: Install PHP Dependencies
       run: composer install --no-dev --optimize-autoloader
       working-directory: ./rexinsit
 
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /rexinsit/  # Change this to your target directory on the server
-          port: 21  # Default FTP port
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /rexinsit/  # Set target directory on your server
+        port: 21  # Default FTP port
