@@ -1,4 +1,4 @@
-@extends('Layouts.Webmaster')
+@extends('layouts.Webmaster')
 @section('web_content')
 
 <!DOCTYPE html>
