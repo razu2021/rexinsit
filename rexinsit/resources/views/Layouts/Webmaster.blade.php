@@ -1,6 +1,3 @@
-@extends('Layouts.Webmaster')
-@section('web_content')
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>this is rexins it </h1>
+    
+
+@yield('web_content')
+
+
 </body>
 </html>
-
-@endsection
